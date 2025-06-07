@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
-import { EMAIL_REGX, PASSWORD_REGEX } from "../../constant/regex";
-import authService from "../../services/auth/auth.service";
-import { jsonSign } from "../../utils/jwtToken";
+import { EMAIL_REGX, PASSWORD_REGEX } from "../constant/regex";
+import authService from "../services/auth.service";
+import { jsonSign } from "../utils/jwtToken";
 
 class authController {
   //Auth Register controller

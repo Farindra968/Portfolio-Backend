@@ -30,6 +30,7 @@ class Certificate extends Model{
     })
     declare institute:string
 
+
     // define the course Started date
     @Column({
         type: DataType.DATE,
@@ -37,12 +38,12 @@ class Certificate extends Model{
     })
     declare startedDate: Date
 
-    // define the Duration column
+    // define the duration column
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    declare duriation: Number
+    declare duration: string
 
     // define the Status column
     @Column({
@@ -50,7 +51,7 @@ class Certificate extends Model{
         defaultValue: "Completed",
         allowNull: false
     })
-    declare status:string
+    declare status: "Completed" | "Ongoing"
 
     // deine the certificate image
     @Column({
@@ -58,7 +59,7 @@ class Certificate extends Model{
     })
     declare certificateImage: string
 
-    // define the descriptiin column
+    // define the description column
     @Column({
         type: DataType.JSON
     })
