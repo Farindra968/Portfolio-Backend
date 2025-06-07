@@ -1,0 +1,36 @@
+{
+  "name": "portfolio_backend",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "\"backend\"",
+    "\"nodejs\"",
+    "\"",
+    "expressjs\""
+  ],
+  "license": "MIT",
+  "author": "Farindra Bhandari",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.ts"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.15.30",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.1",
+    "sequelize-typescript": "^2.1.6"
+  }
+}
