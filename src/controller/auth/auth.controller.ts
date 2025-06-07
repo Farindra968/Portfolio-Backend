@@ -4,8 +4,8 @@ import authService from "../../services/auth/auth.service";
 import { jsonSign } from "../../utils/jwtToken";
 
 class authController {
-  // Register controller
-  static async authRegister(req: Request, res: Response): Promise<void> {
+  //Auth Register controller
+  static async authRegister(req: Request, res: Response) {
     try {
       const { username, email, password, confirmpassword } = req.body;
 
@@ -51,9 +51,33 @@ class authController {
         username: data.username,
         email: data.email,
         id: data.id,
-        role: data.role
+        role: data.role,
       });
       res.cookie("authToken", jwtToken);
+      res.json(data);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  }
+
+  // Auth Login controller
+  // compulsory - email & password = validation
+  static async authLogin(req: Request, res: Response) {
+    try {
+      const { email, password } = req.body;
+      if (!email && !password) {
+        res.status(400).json({ message: "Email & Password is required" });
+        return;
+      }
+      const data = await authService.authLogin(req.body);
+      const jwtToken = jsonSign({
+        username: data.username,
+        email: data.email,
+        id: data.id,
+        role: data.role,
+      });
+      res.cookie("authToken", jwtToken);
+      console.log(jwtToken)
       res.json(data);
     } catch (error) {
       res.status(500).send(error);

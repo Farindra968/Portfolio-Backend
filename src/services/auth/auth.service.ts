@@ -24,4 +24,25 @@ const authRegister = async(data:any)=>{
     return register;
 }
 
-export default {authRegister}
+
+const authLogin = async(data:any)=> {
+
+    // 1. find email and password
+    const user = await User.findOne({where: {email: data.email}})
+    // if email not found in database
+    if(!user) {
+        throw {status:400, message: "User not found"}
+    }
+    
+    // 2. compare user password with database encrypt password
+    const comparePassword = await bcrypt.compare(data.password, user.password)
+    // if user password and database password did not match
+    if(!comparePassword) {
+        throw {status:400, message: "Invalid email or password"}
+    }
+
+    return user;
+
+}
+
+export default {authRegister, authLogin}
