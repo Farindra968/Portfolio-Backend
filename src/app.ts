@@ -1,6 +1,7 @@
 import express from 'express';
 import authRoute from "./routes/auth.routes"
 import certificateRoute from "./routes/certificate.routes"
+import skillRoute from "./routes/skill.routes"
 const app = express();
 
 app.use(express.json()); // Middleware to parse JSON bodies
@@ -25,5 +26,7 @@ app.use("/api/auth", authRoute)
 
 // certificate Routes
 app.use("/api/certificate", certificateRoute)
+//skill routes
+app.use("/api/skill",skillRoute)
 
 export default app

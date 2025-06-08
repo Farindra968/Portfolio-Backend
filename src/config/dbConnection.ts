@@ -19,7 +19,7 @@ sequelize.authenticate().then(()=>{
 })
 
 // migrate the database
-sequelize.sync({alter: true}).then(()=>{
+sequelize.sync({alter: false}).then(()=>{
     console.log('Database synchronized successfully.');
 }).catch((error)=> {
     console.error('Error synchronizing the database:', error);
