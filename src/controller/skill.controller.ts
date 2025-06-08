@@ -18,8 +18,39 @@ class skillController{
                 res.status(400).send("Skil experience is required")
                 return
             }
-
             const data = await skillService.addSkill(req.body)
+            res.json(data)
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    }
+
+    // get All skill
+    static async getAllSkills(req:Request, res:Response) {
+        try {
+            const data = await skillService.getAllSkills();
+            if(!data) {
+                res.status(400).send("Data not found")
+                return;
+            }
+            res.json(data)
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    }
+    
+    // update Skill
+    static async updateSkill(req:Request, res:Response) {
+        try {
+            const {id} = req.params;
+            const data = skillService.updateSkill(req.body, id)
+            // validation if following skills not found
+            if(!data) {
+                res.status(404).send(`${id} is not found`)
+                return;
+            }else{
+                res.status(200).json("Update Successfully")
+            }
             res.json(data)
         } catch (error) {
             res.status(500).send(error)

@@ -8,9 +8,19 @@ interface ISkillData {
 
 }
 
-
+// add skills
 const addSkill = async(data:ISkillData) => {
     return await Skill.create({...data})
 }
 
-export default {addSkill}
+// get all Skills
+const getAllSkills = async()=>{
+    return await Skill.findAll()
+}
+
+// update skill
+const updateSkill = async(data:ISkillData, id:any)=> {
+    return await Skill.update(data, {where:{id:id}})
+}
+
+export default {addSkill, getAllSkills, updateSkill}
