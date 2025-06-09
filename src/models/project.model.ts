@@ -6,6 +6,15 @@ import { Table, Column, Model, DataType } from "sequelize-typescript";
   timestamps: true, //
 })
 class Project extends Model {
+  // define the id column
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4, // Automatically generate a UUID
+    primaryKey: true, // Set this column as the primary key
+    allowNull: false,
+  })
+  declare id: string;
+
   // define title column
   @Column({
     type: DataType.STRING,
@@ -22,7 +31,7 @@ class Project extends Model {
 
   // define description column
   @Column({
-    type: DataType.STRING,
+    type: DataType.JSON,
     allowNull: false,
   })
   declare description: string;
@@ -64,16 +73,16 @@ class Project extends Model {
 
   // define website Url column
   @Column({
-    type: DataType.STRING,
+    type: DataType.JSON,
   })
-  declare websiteUrl: string;
+  declare websiteUrl: string[];
 
   // define github Url column
   @Column({
-    type: DataType.STRING,
-    allowNull: false,
+    type: DataType.JSON,
+    allowNull: true,
   })
-  declare githubUrl: string;
+  declare githubUrl: string[];
 
   // define project startDate column
   @Column({
