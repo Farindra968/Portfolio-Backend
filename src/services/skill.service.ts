@@ -23,4 +23,14 @@ const updateSkill = async(data:ISkillData, id:any)=> {
     return await Skill.update(data, {where:{id:id}})
 }
 
-export default {addSkill, getAllSkills, updateSkill}
+// get single Skills
+const getSingleSkill = async(id:any) => {
+    return await Skill.findByPk(id)
+}
+
+// delets single skill
+const deleteSkill = async(id:any)=>{
+    return await Skill.destroy(id)
+}
+
+export default {addSkill, getAllSkills, updateSkill, getSingleSkill, deleteSkill}
