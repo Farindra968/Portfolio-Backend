@@ -1,6 +1,7 @@
 import { AutoIncrement } from "sequelize-typescript";
 import Project from "../models/project.model";
 import slugify from "slugify";
+import generateUniqueSlug from "../utils/uniqueSlug";
 
 interface IProjectData {
   title: string;
@@ -17,20 +18,11 @@ interface IProjectData {
   endDate?: Date;
 }
 
-const generateUniqueSlug = async (baseSlug: string): Promise<string> => {
-  let slug = baseSlug;
-  let counter = 1;
 
-  while (await Project.findOne({ where: { slug } })) {
-    slug = `${baseSlug}-${counter}`;
-    counter++;
-  }
-  return slug;
-};
 
 const addProject = async (data: IProjectData) => {
   const baseSlug = slugify(data.title, { lower: true, strict: true });
-  const uniqueSlug = await generateUniqueSlug(baseSlug)
+  const uniqueSlug = await generateUniqueSlug(baseSlug, Project)
 
   const project = await Project.create({
     title: data.title,
