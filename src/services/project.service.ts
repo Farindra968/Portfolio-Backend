@@ -42,5 +42,15 @@ const addProject = async (data: IProjectData) => {
   return project;
 };
 
+//updateProject
+const updateProject = async(data:IProjectData, id:any) =>{
+  const update = await Project.update(data, {where:{id:id}})
+  if(!update) {
+    throw {status: 404, messag:`${data.title} is not found`}
+  }
 
-export default {addProject}
+  return update;
+}
+
+
+export default {addProject, updateProject}
