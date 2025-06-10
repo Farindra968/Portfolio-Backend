@@ -1,16 +1,16 @@
 import express, { Router } from "express";
-import certificateController from "../controller/certificate.controller";
+import CertificateController from "../controller/certificate.controller";
 
 const router: Router = express.Router();
 
-router.route("/").get(certificateController.getAllCertificate);
-router.route("/add").post(certificateController.addCertificate);
+router.route("/").get(CertificateController.getAllCertificate);
+router.route("/add").post(CertificateController.addCertificate);
 
 // dynamic
 router
   .route("/:id")
-  .get(certificateController.getSingeCertificate)
-  .patch(certificateController.updateCertificate)
-  .delete(certificateController.deleteCertificate);
+  .get(CertificateController.getSingeCertificate)
+  .patch(CertificateController.updateCertificate)
+  .delete(CertificateController.deleteCertificate);
 
 export default router;

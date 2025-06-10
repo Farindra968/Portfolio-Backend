@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import certificateService from "../services/certificate.service";
 
-class certificateController {
+class CertificateController {
   // add Certificate Controller
   static async addCertificate(req: Request, res: Response) {
     try {
@@ -92,4 +92,4 @@ class certificateController {
   }
 }
 
-export default certificateController;
+export default CertificateController;

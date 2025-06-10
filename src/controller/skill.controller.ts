@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import skillService from "../services/skill.service";
 
-class skillController {
+class SkillController {
   // add Skill Controller
   static async addSkill(req: Request, res: Response) {
     try {
@@ -90,4 +90,4 @@ class skillController {
   }
 }
 
-export default skillController;
+export default SkillController;

@@ -3,7 +3,7 @@ import { EMAIL_REGX, PASSWORD_REGEX } from "../constant/regex";
 import authService from "../services/auth.service";
 import { jsonSign } from "../utils/jwtToken";
 
-class authController {
+class AuthController {
   //Auth Register controller
   static async authRegister(req: Request, res: Response) {
     try {
@@ -85,4 +85,4 @@ class authController {
   }
 }
 
-export default authController;
+export default AuthController;

@@ -1,3 +1,4 @@
+import { AutoIncrement } from "sequelize-typescript";
 import Project from "../models/project.model";
 import slugify from "slugify";
 
@@ -16,17 +17,24 @@ interface IProjectData {
   endDate?: Date;
 }
 
-const addProject = async (data: IProjectData) => {
-  const slug = slugify(data.title, { lower: true, strict: true });
+const generateUniqueSlug = async (baseSlug: string): Promise<string> => {
+  let slug = baseSlug;
+  let counter = 1;
 
-  const exists = await Project.findOne({ where: { slug } });
-  if (exists) {
-    throw new Error("Project with this slug already exists.");
+  while (await Project.findOne({ where: { slug } })) {
+    slug = `${baseSlug}-${counter}`;
+    counter++;
   }
+  return slug;
+};
+
+const addProject = async (data: IProjectData) => {
+  const baseSlug = slugify(data.title, { lower: true, strict: true });
+  const uniqueSlug = await generateUniqueSlug(baseSlug)
 
   const project = await Project.create({
     title: data.title,
-    slug: slug,
+    slug: uniqueSlug,
     description: data.description,
     thumbnailUrl: data.thumbnailUrl,
     technologies: data.technologies,
@@ -48,9 +56,12 @@ const updateProject = async(data:IProjectData, id:any) =>{
   if(!update) {
     throw {status: 404, messag:`${data.title} is not found`}
   }
-
   return update;
 }
 
+const getAllProject = async()=> {
+  return await Project.findAll()
+}
 
-export default {addProject, updateProject}
+
+export default {addProject, updateProject, getAllProject}

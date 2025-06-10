@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import projectService from "../services/project.service";
 
-class projectController {
+class ProjectController {
     
     // add project controller 
     static async addProject(req: Request, res: Response) {
@@ -50,8 +50,22 @@ class projectController {
         try {
             const {id} = req.params;
             const data = await projectService.updateProject(req.body, id)
-            if(!data) {
+            if(data) {
                 res.status(404).send("Request project is not found")
+                return;
+            }
+            res.status(200).json(data)
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    }
+
+    //get All Project Controller
+    static async getAllProject (req:Request, res:Response) {
+        try {
+            const data = await projectService.getAllProject()
+            if(!data) {
+                res.status(400).send("Project data is not vfound")
                 return;
             }
             res.status(200).json(data)
@@ -61,4 +75,4 @@ class projectController {
     }
 }
 
-export default projectController
+export default ProjectController

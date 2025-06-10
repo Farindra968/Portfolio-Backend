@@ -1,11 +1,12 @@
 import express, { Router } from "express";
-import projectController from "../controller/project.controller";
+import ProjectController from "../controller/project.controller";
 
 const router:Router = express.Router();
 
-router.route("/add").post(projectController.addProject)
+router.route("/").get(ProjectController.getAllProject)
+router.route("/add").post(ProjectController.addProject)
 
 //dynamic route
-router.route("/:id").put(projectController.updateProject)
+router.route("/:id").patch(ProjectController.updateProject)
 
-export default router
+export default router;

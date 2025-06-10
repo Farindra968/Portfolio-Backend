@@ -1,15 +1,15 @@
 import express, { Router } from "express";
-import skillController from "../controller/skill.controller";
+import SkillController from "../controller/skill.controller";
 const router: Router = express.Router();
 
-router.route("/").get(skillController.getAllSkills);
-router.route("/add").post(skillController.addSkill);
+router.route("/").get(SkillController.getAllSkills);
+router.route("/add").post(SkillController.addSkill);
 
 // dynamic route
 router
   .route("/:id")
-  .get(skillController.getSingleSkill)
-  .patch(skillController.updateSkill)
-  .delete(skillController.deleteSkill);
+  .get(SkillController.getSingleSkill)
+  .patch(SkillController.updateSkill)
+  .delete(SkillController.deleteSkill);
 
 export default router;
