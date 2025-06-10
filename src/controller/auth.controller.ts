@@ -77,7 +77,7 @@ class AuthController {
         role: data.role,
       });
       res.cookie("authToken", jwtToken);
-      console.log(jwtToken)
+      console.log(jwtToken);
       res.json(data);
     } catch (error) {
       res.status(500).send(error);

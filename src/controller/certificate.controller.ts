@@ -47,24 +47,24 @@ class CertificateController {
     }
   }
 
-  // get single certificate 
-  static async getSingeCertificate(req:Request, res:Response) {
+  // get single certificate
+  static async getSingeCertificate(req: Request, res: Response) {
     try {
-      const {id} = req.params
-      const data =await certificateService.getSingeCertificate(id)
-      if(!data) {
-        res.status(404).send(`${id} is not found`)
+      const { id } = req.params;
+      const data = await certificateService.getSingeCertificate(id);
+      if (!data) {
+        res.status(404).send(`${id} is not found`);
       }
-      res.json(data)
+      res.json(data);
     } catch (error) {
-      res.status(500).send(error)
+      res.status(500).send(error);
     }
   }
 
   // update controller
   static async updateCertificate(req: Request, res: Response) {
     try {
-        const { id } = req.params;
+      const { id } = req.params;
       const data = await certificateService.updateCertificate(req.body, id);
       if (!data) {
         res.status(404).send(`${id} is not found`);
@@ -77,17 +77,17 @@ class CertificateController {
   }
 
   // delete certificate controller
-  static async deleteCertificate(req:Request, res:Response) {
+  static async deleteCertificate(req: Request, res: Response) {
     try {
-      const {id} = req.params
-      const data = await certificateService.deleteCertificate(id)
-      if(!data){
-        res.status(400).send(`${id} is not found`)
+      const { id } = req.params;
+      const data = await certificateService.deleteCertificate(id);
+      if (!data) {
+        res.status(400).send(`${id} is not found`);
         return;
       }
-      res.json(data)
+      res.json(data);
     } catch (error) {
-      res.status(500).send(error)
+      res.status(500).send(error);
     }
   }
 }

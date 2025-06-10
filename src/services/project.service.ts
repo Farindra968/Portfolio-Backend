@@ -18,11 +18,10 @@ interface IProjectData {
   endDate?: Date;
 }
 
-
-
+// add project
 const addProject = async (data: IProjectData) => {
   const baseSlug = slugify(data.title, { lower: true, strict: true });
-  const uniqueSlug = await generateUniqueSlug(baseSlug, Project) // sending baseSlug and Project Model
+  const uniqueSlug = await generateUniqueSlug(baseSlug, Project); // sending baseSlug and Project Model
 
   const project = await Project.create({
     title: data.title,
@@ -43,17 +42,33 @@ const addProject = async (data: IProjectData) => {
 };
 
 //updateProject
-const updateProject = async(data:IProjectData, id:any) =>{
-  const update = await Project.update(data, {where:{id:id}})
-  if(!update) {
-    throw {status: 404, messag:`${data.title} is not found`}
+const updateProject = async (data: IProjectData, id: any) => {
+  const update = await Project.update(data, { where: { id: id } });
+  if (!update) {
+    throw { status: 404, messag: `${data.title} is not found` };
   }
   return update;
-}
+};
 
-const getAllProject = async()=> {
-  return await Project.findAll()
-}
+// get all project
+const getAllProject = async () => {
+  return await Project.findAll();
+};
 
+// get Single Project
+const getSingleProject = async (id: any) => {
+  return await Project.findByPk(id);
+};
 
-export default {addProject, updateProject, getAllProject}
+// delete product
+const deleteProject = async (id: any) => {
+  return await Project.destroy({where:{id:id}});
+};
+
+export default {
+  addProject,
+  updateProject,
+  getAllProject,
+  getSingleProject,
+  deleteProject,
+};
