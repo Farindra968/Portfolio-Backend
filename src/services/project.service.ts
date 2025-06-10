@@ -5,7 +5,7 @@ import generateUniqueSlug from "../utils/uniqueSlug";
 
 interface IProjectData {
   title: string;
-  slug?: string; // generated automatically
+  slug?: string; // generated automatically from title
   description: string;
   thumbnailUrl: string;
   technologies: string[];
@@ -22,7 +22,7 @@ interface IProjectData {
 
 const addProject = async (data: IProjectData) => {
   const baseSlug = slugify(data.title, { lower: true, strict: true });
-  const uniqueSlug = await generateUniqueSlug(baseSlug, Project)
+  const uniqueSlug = await generateUniqueSlug(baseSlug, Project) // sending baseSlug and Project Model
 
   const project = await Project.create({
     title: data.title,
