@@ -29,4 +29,19 @@ const updateExperience =async (data:IExperience, id:string) => {
     return await Experience.update(data, {where:{id:id}})
 }
 
-export default {addExperience, updateExperience}
+//getAllExperience
+const getAllExperience = async ()=>{
+    return await Experience.findAll()
+}
+
+//getSingleExperience
+const getSingleExperience = async(id:any) => {
+    return await Experience.findByPk(id)
+}
+
+// deleteExperience
+const deleteExperience = async(id:any)=>{
+    return await Experience.destroy(id)
+}
+
+export default {addExperience, updateExperience, getAllExperience, getSingleExperience}

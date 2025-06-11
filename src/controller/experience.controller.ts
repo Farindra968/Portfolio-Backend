@@ -44,11 +44,39 @@ class ExperienceControler {
         res.status(404).send("Experience is not found");
         return;
       } else {
-      res.status(200).json(data);}
+        res.status(200).json(data);
+      }
     } catch (error) {
       res.status(500).send(error);
     }
   }
+
+  // getAllExperience
+  static async getAllExperience(req: Request, res: Response) {
+    try {
+      const data = await experienceService.getAllExperience();
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  }
+
+  // getSingleExperience
+  static async getSingleExperience(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const data = await experienceService.getSingleExperience(id);
+      if (!data) {
+        res.status(404).send("Request Experience is not found");
+        return;
+      }
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  }
+
+  // deleteExperience
 }
 
 export default ExperienceControler;
