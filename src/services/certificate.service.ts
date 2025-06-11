@@ -10,6 +10,7 @@ interface IDate {
   description?: any;
 }
 
+// Add certificate
 const addCertificate = async (data: IDate) => {
   const certificate = await Certificate.create({
     certificateName: data.certificateName,
