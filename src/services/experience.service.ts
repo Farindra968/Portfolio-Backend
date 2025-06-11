@@ -24,4 +24,9 @@ const addExperience= async(data:IExperience)=> {
 
 }
 
-export default {addExperience}
+// updateExperience
+const updateExperience =async (data:IExperience, id:string) => {
+    return await Experience.update(data, {where:{id:id}})
+}
+
+export default {addExperience, updateExperience}

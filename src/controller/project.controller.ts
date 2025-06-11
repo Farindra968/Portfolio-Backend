@@ -50,7 +50,7 @@ class ProjectController {
     try {
       const { id } = req.params;
       const data = await projectService.updateProject(req.body, id);
-      if (data) {
+      if (!data) {
         res.status(404).send("Request project is not found");
         return;
       }
