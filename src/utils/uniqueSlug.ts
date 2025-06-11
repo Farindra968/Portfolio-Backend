@@ -1,4 +1,7 @@
-const generateUniqueSlug = async (baseSlug: string, Model:any): Promise<string> => {
+const generateUniqueSlug = async (
+  baseSlug: string,
+  Model: any
+): Promise<string> => {
   let slug = baseSlug;
   let counter = 1;
 
@@ -9,4 +12,4 @@ const generateUniqueSlug = async (baseSlug: string, Model:any): Promise<string> 
   return slug;
 };
 
-export default generateUniqueSlug
+export default generateUniqueSlug;
