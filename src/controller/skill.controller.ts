@@ -77,13 +77,11 @@ class SkillController {
     try {
       const { id } = req.params;
       const data = await skillService.deleteSkill(id);
-      if (!data) {
+      if (data === 0) {
         res.status(404).send(`${id} skills is not found`);
         return;
-      } else {
-        res.status(200).send(`${id} skils is deleted successfully`);
       }
-      res.json(data);
+      res.status(200).send(`${id} skils is deleted successfully`);
     } catch (error) {
       res.status(500).send(error);
     }

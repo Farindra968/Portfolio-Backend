@@ -81,7 +81,7 @@ class CertificateController {
     try {
       const { id } = req.params;
       const data = await certificateService.deleteCertificate(id);
-      if (!data) {
+      if (data === 0) {
         res.status(400).send(`${id} is not found`);
         return;
       }

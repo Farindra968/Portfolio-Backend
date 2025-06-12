@@ -26,10 +26,9 @@ class ExperienceControler {
           res.status(400).send("Ending Date is required");
           return;
         }
-      } else {
-        const data = await experienceService.addExperience(req.body);
-        res.json(data);
       }
+      const data = await experienceService.addExperience(req.body);
+      res.json(data);
     } catch (error) {
       res.status(500).send(error);
     }
@@ -77,6 +76,21 @@ class ExperienceControler {
   }
 
   // deleteExperience
+  static async deleteExperience(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+
+      const data = await experienceService.deleteExperience(id);
+      if (data === 0) {
+        res.status(404).send(`${id} is not found`);
+        return;
+      }
+
+      res.status(200).json({ message: `${id} is deleted successfully` });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  }
 }
 
 export default ExperienceControler;

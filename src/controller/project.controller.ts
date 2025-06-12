@@ -94,12 +94,11 @@ class ProjectController {
     try {
       const { id } = req.params;
       const data = await projectService.deleteProject(id);
-      if (!data) {
+      if (data === 0) {
         res.status(404).send("Project not found");
-      } else {
-        res.status(200).json("Project deleted Sucessfully");
+        return;
       }
-      res.json(data)
+      res.status(200).json(data);
     } catch (error) {
       res.status(500).send(error);
     }
