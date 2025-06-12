@@ -11,6 +11,5 @@ router
   .route("/:id")
   .get(ExperienceControler.getSingleExperience)
   .patch(ExperienceControler.updateExperience)
-
-  router.route("/:id").delete(ExperienceControler.deleteExperience)
+  .delete(ExperienceControler.deleteExperience);
 export default router;
