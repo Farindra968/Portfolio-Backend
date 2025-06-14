@@ -1,10 +1,22 @@
 import { Request, Response } from "express";
 import experienceService from "../services/experience.service";
 
+interface IExtendRequest extends Request {
+  user?: {
+    id: string;
+    email: string;
+    role: string;
+    userName: string | null;
+  };
+}
+
+
 class ExperienceControler {
   //add Experience controller
-  static async addExperience(req: Request, res: Response) {
+  static async addExperience(req: IExtendRequest, res: Response) {
     try {
+      const login = req.user
+      console.log(login)
       const { position, company, startDate, currentlyWorking, endDate } =
         req.body;
       //validation
