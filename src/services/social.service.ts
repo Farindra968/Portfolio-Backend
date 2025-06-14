@@ -6,6 +6,7 @@ interface ISocialLink {
     icon?:string
 }
 
+// add SocialLink
 const addSocialLink = async(data:ISocialLink)=>{
     return await Social.create({
         platform: data.platform,
@@ -13,9 +14,14 @@ const addSocialLink = async(data:ISocialLink)=>{
         icon: data.icon || null
     })
 }
-
+// get All Social Links
 const getAllSocial = async()=>{
     return await Social.findAll();
 }
 
-export default {addSocialLink, getAllSocial}
+// get single Social Links
+const getSingleSocial = async(id:any) =>{
+    return await Social.findByPk(id)
+}
+
+export default {addSocialLink, getAllSocial, getSingleSocial}
