@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { PASSWORD_REGEX } from "../constant/regex";
 import userService from "../services/user.service";
 import { IExtendRequest } from "../global";
-import { SUPERADMIN } from "../constant/role";
+import { ADMIN, SUPERADMIN } from "../constant/role";
 
 class UserController {
       //update password controller
@@ -16,7 +16,7 @@ class UserController {
           // 1. if loggedIn user ko id ra params ko id match vaya na vana failed to access
           // 2. superAdmin can access this route. & can change the password.
           if(loggedin?.id !== id && !loggedin?.role.includes(SUPERADMIN)) {
-            res.status(401).send("Your are not access update other account")
+            res.status(403).send("You are not allowed to update another user's account")
             return;
           }
           //validation

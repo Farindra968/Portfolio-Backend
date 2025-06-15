@@ -1,11 +1,20 @@
 import { Request, Response } from "express";
 import certificateService from "../services/certificate.service";
+import { IExtendRequest } from "../global";
+import { SUPERADMIN } from "../constant/role";
 
 class CertificateController {
   // add Certificate Controller
-  static async addCertificate(req: Request, res: Response) {
+  static async addCertificate(req: IExtendRequest, res: Response) {
     try {
       const { certificateName, institute, startedDate, duration } = req.body;
+      const isLoggedIn = req.user
+      // 1. loggin user ko id ra params id match xoina vana no access
+      // 2. loggin user SuperAdmin hoina van no access
+      if (!isLoggedIn?.role.includes(SUPERADMIN)) {
+        res.status(403).send("You are not allowed to add Certificate");
+        return;
+      }
       if (!certificateName) {
         res.status(400).send("Certificate Name is Required");
         return;
@@ -62,10 +71,19 @@ class CertificateController {
   }
 
   // update controller
-  static async updateCertificate(req: Request, res: Response) {
+  static async updateCertificate(req: IExtendRequest, res: Response) {
     try {
       const { id } = req.params;
+      const isLoggedIn = req.user;
       const data = await certificateService.updateCertificate(req.body, id);
+
+      // 1. loggin user ko id ra params id match xoina vana no access
+      // 2. loggin user SuperAdmin hoina van no access
+      if (isLoggedIn?.id !== id && !isLoggedIn?.role.includes(SUPERADMIN)) {
+        res.status(403).send("You are not allowed to access other account");
+        return;
+      }
+
       if (!data) {
         res.status(404).send(`${id} is not found`);
         return;
@@ -77,10 +95,19 @@ class CertificateController {
   }
 
   // delete certificate controller
-  static async deleteCertificate(req: Request, res: Response) {
+  static async deleteCertificate(req: IExtendRequest, res: Response) {
     try {
       const { id } = req.params;
+      const isLoggedIn = req.user;
       const data = await certificateService.deleteCertificate(id);
+
+      // 1. loggin user ko id ra params id match xoina vana no access
+      // 2. loggin user SuperAdmin hoina van no access
+      if (isLoggedIn?.id !== id && !isLoggedIn?.role.includes(SUPERADMIN)) {
+        res.status(403).send("You are not allowed to access other account");
+        return;
+      }
+
       if (data === 0) {
         res.status(400).send(`${id} is not found`);
         return;
