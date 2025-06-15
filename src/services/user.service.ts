@@ -2,6 +2,11 @@ import bcrypt from "bcrypt";
 import User from "../models/user.model";
 import { IUser } from "../global";
 
+// get all user
+const getAllUser = async()=>{
+  return await User.findAll();
+}
+// update password
 const updatePassword = async (data: IUser, id: any) => {
   //1. check user from id
   const user = await User.findOne({ where: { id: id } });
@@ -28,4 +33,4 @@ const updatePassword = async (data: IUser, id: any) => {
   return {update, message: "Password Update Successfully"};
 };
 
-export default {updatePassword}
+export default {getAllUser, updatePassword}

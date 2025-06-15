@@ -18,3 +18,10 @@ export interface IUser {
   role?: string;
   profilePicture?: string;
 }
+
+export interface IUserFormatter {
+  username: string;
+  email: string;
+  role?: string;
+  profilePicture?: string;
+}
