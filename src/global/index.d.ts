@@ -15,6 +15,6 @@ export interface IUser {
   password: string;
   currentpassword: string;
   email: string;
-  role?: "superAdmin" | "admin" | "User";
+  role?: string;
   profilePicture?: string;
 }
