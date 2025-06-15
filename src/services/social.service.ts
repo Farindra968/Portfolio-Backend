@@ -24,4 +24,13 @@ const getSingleSocial = async(id:any) =>{
     return await Social.findByPk(id)
 }
 
-export default {addSocialLink, getAllSocial, getSingleSocial}
+// update Social
+const updateSocial = async(data:ISocialLink, id:any)=>{
+    return await Social.update(data, {where:{id:id}})
+}
+
+// delete Social
+const deleteSocial = async (id:any) =>{
+    return await Social.destroy(id)
+}
+export default {addSocialLink, getAllSocial, getSingleSocial, updateSocial, deleteSocial}

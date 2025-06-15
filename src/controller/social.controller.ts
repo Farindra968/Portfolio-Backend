@@ -49,6 +49,36 @@ class SocialController {
       res.status(500).send(error);
     }
   }
+
+  //update Social
+  static async updateSocial(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const data = await socialService.updateSocial(req.body, id);
+      if (!data) {
+        res.status(404).json({ message: "Request Socal Account Not found" });
+        return;
+      }
+      res.status(201).json({ data, message: "Update Successfully" });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  }
+
+  // delete Social
+  static async deleteSocial(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const data = await socialService.deleteSocial(id);
+      if (!data) {
+        res.status(404).json({ message: "Request Socal Account Not found" });
+        return;
+      }
+      res.status(201).json({ data, message: "Update Successfully" });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  }
 }
 
 export default SocialController;
