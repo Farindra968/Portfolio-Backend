@@ -2,15 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import { jwtVerify } from "../utils/jwtToken";
 import jwt from "jsonwebtoken";
 import envconfig from "../config/config";
+import { IExtendRequest } from "../global";
 
-interface IExtendRequest extends Request {
-  user?: {
-    id: string;
-    email: string;
-    role: string;
-    userName: string | null;
-  };
-}
+
 
 class AuthMiddleware {
   static async isLoggedIn(

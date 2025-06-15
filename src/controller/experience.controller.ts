@@ -1,14 +1,7 @@
 import { Request, Response } from "express";
 import experienceService from "../services/experience.service";
+import { IExtendRequest } from "../global";
 
-interface IExtendRequest extends Request {
-  user?: {
-    id: string;
-    email: string;
-    role: string;
-    userName: string | null;
-  };
-}
 
 
 class ExperienceControler {

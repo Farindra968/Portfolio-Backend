@@ -1,14 +1,24 @@
 import { Request, Response } from "express";
 import { PASSWORD_REGEX } from "../constant/regex";
 import userService from "../services/user.service";
+import { IExtendRequest } from "../global";
+import { SUPERADMIN } from "../constant/role";
 
 class UserController {
       //update password controller
       // compulsory - current password, new password, confirm password
-      static async updatePassword(req: Request, res: Response) {
+      static async updatePassword(req: IExtendRequest, res: Response) {
         try {
           const { id } = req.params;
+          const loggedin = req.user;
           const { currentpassword, password, confirmpassword } = req.body;
+
+          // 1. if loggedIn user ko id ra params ko id match vaya na vana failed to access
+          // 2. superAdmin can access this route. & can change the password.
+          if(loggedin?.id !== id && !loggedin?.role.includes(SUPERADMIN)) {
+            res.status(401).send("Your are not access update other account")
+            return;
+          }
           //validation
           if (!currentpassword) {
             res.status(404).send("Current Password is required");
