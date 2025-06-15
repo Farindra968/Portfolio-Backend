@@ -74,7 +74,6 @@ const updatePassword = async (data: IUser, id: any) => {
     },
     { where: { id } }
   );
-
   // 7. return success
   return {update, message: "Password Update Successfully"};
 };
