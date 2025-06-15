@@ -1,14 +1,8 @@
 import bcrypt from "bcrypt";
 import User from "../models/user.model";
+import { IUser } from "../global";
 
-interface IUser {
-  username: string;
-  password: string;
-  currentpassword: string;
-  email: string;
-  role?: "superAdmin" | "admin" | "User";
-  profilePicture?: string;
-}
+
 
 const authRegister = async (data: IUser) => {
   const existingUser = await User.findOne({ where: { email: data.email } });

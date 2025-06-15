@@ -5,6 +5,7 @@ import skillRoute from "./routes/skill.routes"
 import projectRoute from "./routes/project.routes"
 import experienceRoute from './routes/experience.routes';
 import socialRoute from "./routes/social.routes"
+import userRoute from "./routes/user.routes"
 const app = express();
 
 app.use(express.json()); // Middleware to parse JSON bodies
@@ -27,6 +28,8 @@ app.get("/", (req, res)=> {
 //auth Routes
 app.use("/api/auth", authRoute)
 
+//profile
+app.use("/api/account", userRoute)
 // certificate Routes
 app.use("/api/certificate", certificateRoute)
 //skill routes

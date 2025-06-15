@@ -1,4 +1,5 @@
 import { Table, Column, Model, DataType } from "sequelize-typescript";
+import { ADMIN, SUPERADMIN, USER } from "../constant/role";
 
 @Table({
     tableName: "users",
@@ -40,8 +41,8 @@ class User extends Model{
 
     // Define the role
     @Column({
-        type: DataType.ENUM("superAdmin", "admin", "user"),
-        defaultValue: "user",
+        type: DataType.ENUM(SUPERADMIN, ADMIN, USER),
+        defaultValue: USER,
         allowNull: false,
     })
     declare role: string

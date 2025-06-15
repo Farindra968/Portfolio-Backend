@@ -111,7 +111,6 @@ class AuthController {
         res.status(404).send("Confirm Pasword is required");
         return;
       }
-
       // check password & confirm password
       if (password !== confirmpassword) {
         res.status(404).send("Password and Confirm Password did not match");

@@ -1,6 +1,13 @@
 import {Sequelize} from 'sequelize-typescript';
 import envconfig from './config';
 
+
+const sequelize = new Sequelize(envconfig.postgressOrm, {
+  dialect: 'postgres',
+    models: [__dirname + "/../models"], // Path to your models directory
+  logging: false, // optional
+});
+/*
 const sequelize = new Sequelize({
     database: envconfig.dbName,
     dialect: 'mysql',
@@ -10,6 +17,7 @@ const sequelize = new Sequelize({
     port: Number(envconfig.dbPort),
     models: [__dirname + "/../models"], // Path to your models directory
 })
+*/
 
 
 sequelize.authenticate().then(()=>{

@@ -9,6 +9,7 @@ const envconfig = {
     dbPassword: process.env.DB_PASSWORD,
     dbHost: process.env.DB_HOST,
     dbPort: process.env.DB_PORT,
+    postgressOrm: process.env.POSTGRESS_ORM as string ,
     jsonSecret: process.env.JS_SecretKey
 }
 
